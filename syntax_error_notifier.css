@@ -1,0 +1,42 @@
+/* Styles for the Modal route */
+.syntax-error-modal {
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #000;
+    position: absolute;
+    z-index: 999999;
+    background-color: #D43F3A;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    top: 10%;
+    text-align: left;
+    border: 1px solid #fff;
+    color: white;
+    padding: 2em;
+    font-size: x-small;
+    font-family: monospace;
+    white-space: pre-wrap;
+    line-height: 1.2em;
+}
+
+.syntax-error-modal p{
+    font-size: x-small;
+}
+
+.syntax-error-modal a,.syntax-error-modal a:visited{
+    color: #222222;
+}
+
+.syntax-error-modal .reload-message{
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px #000;
+    background-color: #B80A0A;
+    font-size: large;
+    padding: 1em;
+    text-align: center;
+    margin-top: 1em;
+    border: 1px solid #fcc;
+    cursor: pointer;
+}
