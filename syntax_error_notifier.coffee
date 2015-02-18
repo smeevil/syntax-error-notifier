@@ -40,7 +40,16 @@
 
 
 window.onerror = (message, filename, lineno, colno, error)->
-  if message=='SyntaxError: JSON Parse error: Unexpected identifier "Your"'
+  console.log "CAUGHT"
+  console.log message
+  console.log filename
+  console.log lineno
+  console.log colno
+  console.log error
+
+  #first is safari, latter is chrome
+  if message=='SyntaxError: JSON Parse error: Unexpected identifier "Your"' || "Uncaught SyntaxError: Unexpected token Y"
+    console.log "passing"
     SyntaxErrorNotifier.GetMessage (message)->
       SyntaxErrorNotifier.UpdateMessage(message)
 
