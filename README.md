@@ -33,12 +33,16 @@ On a detected crash it will automatically pop the overlay.
 
 **Config:**
 
-At the moment you can configure the recheck time and the editor protocol to use.
-By default it will check every second if the app is in a functional state again and will use x-mine as protocol (which will open the file in rubymine).
+By default it will check every second if the app is in a functional state again
+You can change this by settings the following (checkInterval is in seconds)
 
-You can change this by settings the following (checkInterval is in seconds) : 
+There are currently two modes : obtrusive , and unobtrusive
+
+In the example you see the obtrusive version, the unobtrusive version will only show a small red bar at the top of you app containing the error
+
+
 ~~~js
-SyntaxErrorNotifier.config={checkInterval: 1, editorProtocol: 'txmt'}
+SyntaxErrorNotifier.config={checkInterval: 1, obtrusive: false}
 ~~~
 
 Licensed under the WTFPL License. See the `LICENSE` file for details.

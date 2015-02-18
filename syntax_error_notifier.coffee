@@ -1,11 +1,13 @@
 @SyntaxErrorNotifier =
   config:
     checkInterval: 1
-    editorProtocol: 'x-mine'
+    obtrusive: true
 
   ParseMsg: (msg) ->
     matches =  msg.match /\(compiling\s(.*?)\)/
-    msg = msg.replace matches[1], "compiling <a href='#{@config.editorProtocol}://#{matches[1]}'>#{matches[1]}</a>"
+    unless @config.obtrusive
+      parts=msg.split("\n")
+      msg = "#{parts[6]} #{parts[7]}"
     return msg
 
   GetMessage: (callback)->
@@ -16,10 +18,25 @@
     modal = $('.syntax-error-modal')
     unless modal.length
       modal=$('<div/>').addClass('syntax-error-modal')
+      modal.addClass('obtrusive') if @config.obtrusive
       modal.appendTo($('body'))
-    modal.html('')
-    $('<p/>').html(@ParseMsg(message)).appendTo(modal)
 
+    messageElement = $('.syntax-error-modal .message')
+    unless messageElement.length
+      messageElement=$('<div/>').addClass('message')
+      messageElement.appendTo(modal)
+      if @config.obtrusive
+        messageElement.addClass('obtrusive')
+      else
+        messageElement.addClass('unobtrusive')
+
+    msg=$('<p/>').html(@ParseMsg(message))
+    messageElement.html(msg)
+
+    $(modal).fadeIn() if modal.is(':hidden')
+
+    if @config.obtrusive && messageElement.is(':hidden')
+      $(messageElement).fadeIn()
 
 
 window.onerror = (message, filename, lineno, colno, error)->
