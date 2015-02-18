@@ -2,6 +2,7 @@
   config:
     checkInterval: 1
     obtrusive: true
+    debug: false
 
   ParseMsg: (msg) ->
     matches =  msg.match /\(compiling\s(.*?)\)/
@@ -40,16 +41,16 @@
 
 
 window.onerror = (message, filename, lineno, colno, error)->
-  console.log "CAUGHT"
-  console.log message
-  console.log filename
-  console.log lineno
-  console.log colno
-  console.log error
+  if SyntaxErrorNotifier.debug
+    console.log "CAUGHT"
+    console.log message
+    console.log filename
+    console.log lineno
+    console.log colno
+    console.log error
 
   #first is safari, latter is chrome
   if message=='SyntaxError: JSON Parse error: Unexpected identifier "Your"' || "Uncaught SyntaxError: Unexpected token Y"
-    console.log "passing"
     SyntaxErrorNotifier.GetMessage (message)->
       SyntaxErrorNotifier.UpdateMessage(message)
 

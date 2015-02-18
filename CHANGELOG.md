@@ -1,5 +1,10 @@
 # Changelog
 
+
+## 1.0.3
+#### 18-02-15
+- added a debug option
+
 ## 1.0.2
 #### 18-02-15
 - It was only working for Safari, now as well for Chrome
