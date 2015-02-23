@@ -2,6 +2,10 @@
 
 
 ## 1.0.3
+#### 23-02-15
+- Clearing console after reload
+
+## 1.0.3
 #### 18-02-15
 - added a debug option
 

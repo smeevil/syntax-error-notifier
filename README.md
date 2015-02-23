@@ -4,7 +4,8 @@
 
 
 
-It will show you an obtrusive error message if your app is crashing due to a syntax error. 
+It will show you an obtrusive error message if your app is crashing due to a syntax error.
+Optionally it can clear the console on a code push
 
 **This package will only work in development**
 
@@ -42,7 +43,7 @@ In the example you see the obtrusive version, the unobtrusive version will only 
 
 
 ~~~js
-SyntaxErrorNotifier.config={checkInterval: 1, obtrusive: false}
+SyntaxErrorNotifier.config={checkInterval: 1, obtrusive: false, clearConsoleOnReload: false}
 ~~~
 
 Licensed under the WTFPL License. See the `LICENSE` file for details.

@@ -3,6 +3,7 @@
     checkInterval: 1
     obtrusive: true
     debug: false
+    clearConsoleOnReload: true
 
   ParseMsg: (msg) ->
     matches =  msg.match /\(compiling\s(.*?)\)/
@@ -39,6 +40,9 @@
     if @config.obtrusive && messageElement.is(':hidden')
       $(messageElement).fadeIn()
 
+if SyntaxErrorNotifier.config.clearConsoleOnReload
+  window.onbeforeunload = ->
+    console.clear()
 
 window.onerror = (message, filename, lineno, colno, error)->
   if SyntaxErrorNotifier.debug
