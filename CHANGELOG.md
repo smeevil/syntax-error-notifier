@@ -1,6 +1,14 @@
 # Changelog
 
 
+## 1.0.5
+#### 01-03-15
+- Fixed a huge bug concerning the error detection causing an infinite loop
+
+## 1.0.4
+#### 23-02-15
+- noop
+
 ## 1.0.3
 #### 23-02-15
 - Clearing console after reload

@@ -45,7 +45,7 @@ if SyntaxErrorNotifier.config.clearConsoleOnReload
     console.clear()
 
 window.onerror = (message, filename, lineno, colno, error)->
-  if SyntaxErrorNotifier.debug
+  if SyntaxErrorNotifier.config.debug
     console.log "CAUGHT"
     console.log message
     console.log filename
@@ -54,7 +54,12 @@ window.onerror = (message, filename, lineno, colno, error)->
     console.log error
 
   #first is safari, latter is chrome
-  if message=='SyntaxError: JSON Parse error: Unexpected identifier "Your"' || "Uncaught SyntaxError: Unexpected token Y"
+
+  if message == ('SyntaxError: JSON Parse error: Unexpected identifier "Your"' || "Uncaught SyntaxError: Unexpected token Y")
+    console.log "Passed message !"
+    console.log message=='SyntaxError: JSON Parse error: Unexpected identifier "Your"'
+    console.log message=="Uncaught SyntaxError: Unexpected token Y"
+
     SyntaxErrorNotifier.GetMessage (message)->
       SyntaxErrorNotifier.UpdateMessage(message)
 
