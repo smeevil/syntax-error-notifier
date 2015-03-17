@@ -1,6 +1,11 @@
 # Changelog
 
 
+## 1.0.7
+#### 17-03-15
+- Added file open with customizable editor protocol
+- Added option to filter stacktraces
+
 ## 1.0.6
 #### 01-03-15
 - Used an other way to check for error messages all together
