@@ -38,12 +38,30 @@ By default it will check every second if the app is in a functional state again
 You can change this by settings the following (checkInterval is in seconds)
 
 There are currently two modes : obtrusive , and unobtrusive
+You can set those using the boolean 'obtrusive'
 
 In the example you see the obtrusive version, the unobtrusive version will only show a small red bar at the top of you app containing the error
 
+Config options :
 
+| Option               | Type    | Default  | Description                                                                                                            |
+|----------------------|---------|----------|------------------------------------------------------------------------------------------------------------------------|
+| obtrusive            | Boolean | true     | Show the error as overlay on your application, or if false, just pop a small error bar on top of the page              |
+| checkInterval        | Number  | 1        | Check interval in seconds to see if the error has been resolved.                                                       |
+| clearConsoleOnReload | Boolean | true     | Clears the browsers debug console after each page reload                                                               |
+| filterDotMeteor      | Boolean | true     | Clears the stack trace that dives into .meteor directory                                                               |
+| linkFiles            | Boolean | true     | Link the files in the stack trace to your browser                                                                      |
+| editorProtocol       | String  | 'x-mine' | The protocol used to open your files, sublime example : 'subl' this will generate links like x-mine://open?file=<FILE> |
+
+example config : 
 ~~~js
-SyntaxErrorNotifier.config={checkInterval: 1, obtrusive: false, clearConsoleOnReload: false}
+SyntaxErrorNotifier.config={
+    checkInterval: 1, 
+    obtrusive: false, 
+    clearConsoleOnReload: false
+    filterDotMeteor: true
+    linkFiles: true
+}
 ~~~
 
 Licensed under the WTFPL License. See the `LICENSE` file for details.

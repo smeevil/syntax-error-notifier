@@ -73,3 +73,8 @@
     border: 1px solid #fcc;
     cursor: pointer;
 }
+
+.syntax-error-modal .highlight {
+    font-size: large;
+    font-weight: bold;
+}
