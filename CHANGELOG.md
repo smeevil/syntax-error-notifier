@@ -4,7 +4,8 @@
 ## 1.0.8
 #### 20-03-15
 - Made the modal an underscore template
-- renamed option "obtrusive: true" to "mode: 'obtrusive'"
+- Added more scrubbing of the error messages
+- Renamed option "obtrusive: true" to "mode: 'obtrusive'"
 
 ## 1.0.7
 #### 17-03-15

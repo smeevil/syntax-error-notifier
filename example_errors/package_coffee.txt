@@ -1,0 +1,17 @@
+Your app is crashing. Here's the latest log.
+
+
+/Users/smeevil/.meteor/packages/meteor-tool/.1.0.41.v0q0sk++os.osx.x86_64+web.browser+web.cordova/meteor-tool-os.osx.x86_64/dev_bundle/server-lib/node_modules/fibers/future.js:173
+throw(ex);
+^
+ReferenceError: type is not defined
+at Package (/Users/smeevil/dev/meteor/bac/.meteor/local/build/programs/server/packages/smeevil_paypal-checkout.js:70:15)
+at /Users/smeevil/dev/meteor/bac/.meteor/local/build/programs/server/packages/smeevil_paypal-checkout.js:80:4
+at /Users/smeevil/dev/meteor/bac/.meteor/local/build/programs/server/packages/smeevil_paypal-checkout.js:87:3
+at /Users/smeevil/dev/meteor/bac/.meteor/local/build/programs/server/boot.js:205:10
+at Array.forEach (native)
+at Function._.each._.forEach (/Users/smeevil/.meteor/packages/meteor-tool/.1.0.41.v0q0sk++os.osx.x86_64+web.browser+web.cordova/meteor-tool-os.osx.x86_64/dev_bundle/server-lib/node_modules/underscore/underscore.js:79:11)
+at /Users/smeevil/dev/meteor/bac/.meteor/local/build/programs/server/boot.js:116:5
+
+Exited with code: 8
+Your application is crashing. Waiting for file change.

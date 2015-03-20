@@ -1,0 +1,11 @@
+Your app is crashing. Here's the latest log. (smeevil_syntax-error-notifier.js, line 78)
+
+=> Meteor server restarted
+=> Client modified -- refreshing (x52)
+Errors prevented startup:
+
+While building the application:
+client/templates/contract.jade: Jade syntax error: Tag must be in a template on line 1
+<runJavaScript-65>:60:14: Cannot read property 'head' of undefined (compiling client/templates/contract.jade) (at fileModeHandler)
+
+Your application has errors. Waiting for file change.

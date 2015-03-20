@@ -1,0 +1,16 @@
+Your app is crashing. Here's the latest log.
+
+=> Meteor 1.0.4.1 is available. Update this project with 'meteor update'.
+Started MongoDB.
+Started your app.
+
+App running at: http://localhost:3000/
+=> Client modified -- refreshing (x26)
+Error serving static file Error: ENOENT, stat '/Users/smeevil/dev/meteor/interface/.meteor/local/build/programs/web.browser/15479cdc50c5eff57439eff875263dd57d4fbcb7.css'
+=> Client modified -- refreshing (x4)
+Errors prevented startup:
+
+While building the application:
+<runJavaScript-14>:148:11: client/lib/03-stats.coffee:1: unexpected ! (compiling client/lib/03-stats.coffee) (at handler)
+
+Your application has errors. Waiting for file change
