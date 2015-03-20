@@ -1,7 +1,7 @@
 Package.describe({
   name: 'smeevil:syntax-error-notifier',
   summary: 'Display a warning modal if your app crashes due to a syntax error, auto reloads on fix',
-  version: '1.0.7',
+  version: '1.0.8',
   git: 'https://github.com/smeevil/syntax-error-notifier.git',
   debugOnly: true
 });
@@ -17,7 +17,8 @@ Package.onUse(function(api) {
 
   api.add_files([
           'syntax_error_notifier.coffee',
-          'syntax_error_notifier.css'
+          'syntax_error_notifier.css',
+          'warning_small.png'
       ], 'client'
   );
 });

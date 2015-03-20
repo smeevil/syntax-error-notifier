@@ -1,7 +1,7 @@
 @SyntaxErrorNotifier =
   config:
     checkInterval: 1
-    obtrusive: true
+    mode: 'obtrusive'
     debug: false
     clearConsoleOnReload: true
     filterDotMeteor: true
@@ -32,8 +32,12 @@ Your application is crashing. Waiting for file change.
 
 
   ParseMsg: (msg) ->
-    if @config.obtrusive
+    if @config.mode=='unobtrusive'
+      parts=msg.split("\n")
+      msg = "#{parts[6]} #{parts[7]}"
+    else
       msg = @FilterDotMeteor(msg) if @config.filterDotMeteor
+      msg = @CleanMessage(msg)
 
       lines=[]
       for line in msg.split("\n")
@@ -42,49 +46,55 @@ Your application is crashing. Waiting for file change.
         lines.push line
       msg = lines.join("\n")
 
-    else
-      parts=msg.split("\n")
-      msg = "#{parts[6]} #{parts[7]}"
-
     return msg
 
   GetMessage: (callback)->
     $.get "http://#{window.location.host}", (message) ->
       callback(message)
 
-  UpdateMessage: (message) ->
-    modal = $('.syntax-error-modal')
-    unless modal.length
-      modal = $('<div/>').addClass('syntax-error-modal')
-      modal.addClass('obtrusive') if @config.obtrusive
-      modal.appendTo($('body'))
+  UpdateMessage: (message, header="Your app is crashing !") ->
+    container = $('.syntax-error-container')
+    unless container.length
+      template = _.template("
+        <div class='syntax-error-container <%= mode %>'>
+          <div class='syntax-error-modal'>
+          <div class='syntax-error-header'><%= header %></div>
+          <div class='syntax-error-message'>
+            <%= message %>
+          </div>
+        </div>
+      ");
+      $(template(mode: SyntaxErrorNotifier.config.mode, header: header, message: message)).appendTo($('body'))
+      container = $('.syntax-error-container')
 
-    messageElement = $('.syntax-error-modal .message')
-    unless messageElement.length
-      messageElement = $('<div/>').addClass('message')
-      messageElement.appendTo(modal)
-      if @config.obtrusive
-        messageElement.addClass('obtrusive')
-      else
-        messageElement.addClass('unobtrusive')
+    headerElement = container.find('.syntax-error-header')
+    messageElement = container.find('.syntax-error-message')
 
-    msg=$('<p/>').html(@ParseMsg(message))
-    messageElement.html(msg)
+    headerElement.html(header)
+    messageElement.html($('<p/>').html(@ParseMsg(message)))
 
-    $(modal).fadeIn() if modal.is(':hidden')
+    container.fadeIn() if container.is(':hidden')
 
-    if @config.obtrusive && messageElement.is(':hidden')
-      $(messageElement).fadeIn()
+#    unless @config.mode=='unobtrusive'
+#      container.fadeIn() if container.is(':hidden')
+
 
   FilterDotMeteor: (msg) ->
     lines=[]
     for line in msg.split("\n")
-      if line.match /\/\.meteor\//
-        continue unless line.match(/^at Package/)
+      continue unless line.match(/^at Package/)
       lines.push line
     msg = lines.join("\n")
 
     return msg
+
+  CleanMessage: (msg) ->
+    lines=[]
+    for line in msg.split("\n")
+      if line.match /\/\.meteor\//
+        continue if line.match(/^Your app is crashing|throw(ex);|\^/)
+      lines.push line
+    msg = lines.join("\n")
 
   HighlightErrors: (line)->
     line = "<span class='highlight'>#{line}</span>" if line.match /^ReferenceError/
@@ -101,7 +111,7 @@ if SyntaxErrorNotifier.config.clearConsoleOnReload
 
 window.onerror = (message, filename, lineno, colno, error)->
   if SyntaxErrorNotifier.config.debug
-    console.log "CAUGHT"
+    console.log "ERROR CAUGHT"
     console.log message
     console.log filename
     console.log lineno
@@ -109,7 +119,6 @@ window.onerror = (message, filename, lineno, colno, error)->
     console.log error
 
   #first is safari, latter is chrome
-
   if message in ['SyntaxError: JSON Parse error: Unexpected identifier "Your"',
                  "Uncaught SyntaxError: Unexpected token Y"]
     SyntaxErrorNotifier.GetMessage (message)->
@@ -122,3 +131,7 @@ window.onerror = (message, filename, lineno, colno, error)->
           else
             location.reload()
       , SyntaxErrorNotifier.config.checkInterval * 1000
+
+$ ->
+  console.log "simulating error"
+  SyntaxErrorNotifier.Simulate()

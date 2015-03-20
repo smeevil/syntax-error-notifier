@@ -44,20 +44,20 @@ In the example you see the obtrusive version, the unobtrusive version will only 
 
 Config options :
 
-| Option               | Type    | Default  | Description                                                                                                            |
-|----------------------|---------|----------|------------------------------------------------------------------------------------------------------------------------|
-| obtrusive            | Boolean | true     | Show the error as overlay on your application, or if false, just pop a small error bar on top of the page              |
-| checkInterval        | Number  | 1        | Check interval in seconds to see if the error has been resolved.                                                       |
-| clearConsoleOnReload | Boolean | true     | Clears the browsers debug console after each page reload                                                               |
-| filterDotMeteor      | Boolean | true     | Clears the stack trace that dives into .meteor directory                                                               |
-| linkFiles            | Boolean | true     | Link the files in the stack trace to your browser                                                                      |
-| editorProtocol       | String  | 'x-mine' | The protocol used to open your files, sublime example : 'subl' this will generate links like x-mine://open?file=<FILE> |
+| Option               | Type    | Default   | Description                                                                                                                                     |
+|----------------------|---------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| mode                 | String  | obtrusive | Show the error as overlay on your application if obtrusive, or set to unobtrusive to just pop a small error bar on top of the page              |                         
+| checkInterval        | Number  | 1         | Check interval in seconds to see if the error has been resolved.                                                                                |
+| clearConsoleOnReload | Boolean | true      | Clears the browsers debug console after each page reload                                                                                        |
+| filterDotMeteor      | Boolean | true      | Clears the stack trace that dives into .meteor directory                                                                                        |
+| linkFiles            | Boolean | true      | Link the files in the stack trace to your browser                                                                                               |
+| editorProtocol       | String  | 'x-mine'  | The protocol used to open your files, sublime example : 'subl' this will generate links like x-mine://open?file=<FILE>                          |
 
 example config : 
 ~~~js
 SyntaxErrorNotifier.config={
     checkInterval: 1, 
-    obtrusive: false, 
+    mode: 'obtrusive', 
     clearConsoleOnReload: false
     filterDotMeteor: true
     linkFiles: true
